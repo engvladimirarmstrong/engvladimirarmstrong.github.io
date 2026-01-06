@@ -1,17 +1,14 @@
-.. AI Neuron UVM documentation master file, created by
-   sphinx-quickstart on Tue Jan  6 11:49:17 2026.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+******************************
+AI Neuron UVM Presentation
+******************************
 
-AI Neuron UVM documentation
-===========================
+.. uml::
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+   @startuml
+   Alice -> Bob: Hi!
+   Alice <- Bob: How are you?
+   @enduml
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-

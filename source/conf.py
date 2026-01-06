@@ -1,3 +1,5 @@
+import os
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -18,6 +20,7 @@ extensions = [
     'sphinx_rtd_theme',
     'sphinx_rtd_size',
     'sphinx_design',
+    'sphinxcontrib.plantuml',
 ]
 
 sphinx_rtd_size_width = "100%"
@@ -30,3 +33,8 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+local_plantuml_path = os.path.join(os.path.dirname(__file__), "utils", "plantuml-1.2025.10.jar")
+local_config_path = os.path.join(os.path.dirname(__file__), "utils", "plantuml_config.cfg")
+plantuml = f"java -jar {local_plantuml_path} -config {local_config_path}"
+plantuml_output_format = 'svg'
