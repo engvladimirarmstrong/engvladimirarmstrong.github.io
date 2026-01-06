@@ -1,20 +1,17 @@
-.. Vladimir Armstrong Website documentation master file, created by
-   sphinx-quickstart on Mon Jan  5 15:02:27 2026.
+.. AI Neuron UVM documentation master file, created by
+   sphinx-quickstart on Tue Jan  6 11:49:17 2026.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Vladimir Armstrong Website's documentation!
-======================================================
+AI Neuron UVM documentation
+===========================
+
+Add your content using ``reStructuredText`` syntax. See the
+`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+documentation for details.
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
