@@ -35,7 +35,6 @@ note bottom of Activation
   Activation Functions:
   * Sigmoid
   * ReLU
-  * Tanh
 end note
 
 @enduml

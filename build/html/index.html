@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Neuron DUT UVM Presentation &mdash; Vlad&#39;s AI UVM Project 1.0.0 documentation</title>
+  <title>Artificial Neuron UVM Presentation &mdash; Vlad&#39;s AI UVM Project 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/sphinx_rtd_size.css?v=f26ae176" />
@@ -19,6 +19,7 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -45,9 +46,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">AI Neuron DUT UVM Presentation</a><ul>
+<li><a class="reference internal" href="#">Artificial Neuron UVM Presentation</a><ul>
 <li><a class="reference internal" href="#design-under-test-dut">Design Under Test (DUT)</a><ul>
-<li><a class="reference internal" href="#basic-artificial-neuron-model">Basic Artificial Neuron Model</a></li>
+<li><a class="reference internal" href="#mathematical-model">Mathematical Model</a></li>
+<li><a class="reference internal" href="#model-diagram">Model Diagram</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#universal-verification-methodology-uvm">Universal Verification Methodology (UVM)</a><ul>
@@ -76,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">AI Neuron DUT UVM Presentation</li>
+      <li class="breadcrumb-item active">Artificial Neuron UVM Presentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,15 +88,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ai-neuron-dut-uvm-presentation">
-<h1>AI Neuron DUT UVM Presentation<a class="headerlink" href="#ai-neuron-dut-uvm-presentation" title="Link to this heading"></a></h1>
+  <section id="artificial-neuron-uvm-presentation">
+<h1>Artificial Neuron UVM Presentation<a class="headerlink" href="#artificial-neuron-uvm-presentation" title="Link to this heading"></a></h1>
 <section id="design-under-test-dut">
 <h2>Design Under Test (DUT)<a class="headerlink" href="#design-under-test-dut" title="Link to this heading"></a></h2>
-<section id="basic-artificial-neuron-model">
-<h3>Basic Artificial Neuron Model<a class="headerlink" href="#basic-artificial-neuron-model" title="Link to this heading"></a></h3>
+<p>The DUT is Artificial Neuron which is the building block of Artificial Intelligence (AI) neural networks.</p>
+<section id="mathematical-model">
+<h3>Mathematical Model<a class="headerlink" href="#mathematical-model" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[y = f\left( \sum_{i=1}^{n} w_i x_i + b \right)\]</div>
+<p>The Artificial Neuron Mathematical Model output <span class="math notranslate nohighlight">\(y\)</span> is calculated using the following steps:</p>
+<ul class="simple">
+<li><p><strong>Step #1. Weighted Sum</strong>: Calculate the sum of inputs multiplied by weights.</p></li>
+<li><p><strong>Step #2. Bias</strong>: Add a bias term to the sum.</p></li>
+<li><p><strong>Step #3. Activation</strong>: Apply a non-linear activation function:</p>
+<ul>
+<li><p><strong>Sigmoid</strong>: Outputs a value between 0 and 1.</p></li>
+<li><p><strong>ReLU</strong>: Rectified Linear Unit, outputs the input if positive, else zero.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="model-diagram">
+<h3>Model Diagram<a class="headerlink" href="#model-diagram" title="Link to this heading"></a></h3>
 <p class="plantuml">
-<object data="_images/plantuml-afc17da7c12974f86a09120b079857cb971a447c.svg" type="image/svg+xml" style="width:793px;height:391px;">
-<img src="_images/plantuml-afc17da7c12974f86a09120b079857cb971a447c.png" alt="&#64;startuml
+<object data="_images/plantuml-c291e0ad87c0a14a3b1abf47f79bf0992de4138e.svg" type="image/svg+xml" style="width:793px;height:373px;">
+<img src="_images/plantuml-c291e0ad87c0a14a3b1abf47f79bf0992de4138e.png" alt="&#64;startuml
 skinparam packageStyle rect
 skinparam defaultTextAlignment center
 
@@ -131,7 +150,6 @@ note bottom of Activation
   Activation Functions:
   * Sigmoid
   * ReLU
-  * Tanh
 end note
 
 &#64;enduml
