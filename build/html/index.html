@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Neuron UVM Presentation &mdash; AI Neuron UVM 1.0.0 documentation</title>
+  <title>AI Neuron DUT UVM Presentation &mdash; Vlad&#39;s AI UVM Project 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/sphinx_rtd_size.css?v=f26ae176" />
@@ -33,7 +33,7 @@
           
           
           <a href="#" class="icon icon-home">
-            AI Neuron UVM
+            Vlad's AI UVM Project
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,7 +45,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">AI Neuron UVM Presentation</a></li>
+<li><a class="reference internal" href="#">AI Neuron DUT UVM Presentation</a><ul>
+<li><a class="reference internal" href="#design-under-test-dut">Design Under Test (DUT)</a><ul>
+<li><a class="reference internal" href="#basic-artificial-neuron-model">Basic Artificial Neuron Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#universal-verification-methodology-uvm">Universal Verification Methodology (UVM)</a><ul>
+<li><a class="reference internal" href="#key-benefits">Key Benefits</a></li>
+<li><a class="reference internal" href="#core-components">Core Components</a></li>
+<li><a class="reference internal" href="#simulation-phases">Simulation Phases</a></li>
+<li><a class="reference internal" href="#uvm-testbench-hierarchy-component-diagram">UVM Testbench Hierarchy (Component Diagram)</a></li>
+<li><a class="reference internal" href="#uvm-transaction-flow-sequence-diagram">UVM Transaction Flow (Sequence Diagram)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -54,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">AI Neuron UVM</a>
+          <a href="#">Vlad's AI UVM Project</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -62,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">AI Neuron UVM Presentation</li>
+      <li class="breadcrumb-item active">AI Neuron DUT UVM Presentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,18 +86,166 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ai-neuron-uvm-presentation">
-<h1>AI Neuron UVM Presentation<a class="headerlink" href="#ai-neuron-uvm-presentation" title="Link to this heading"></a></h1>
+  <section id="ai-neuron-dut-uvm-presentation">
+<h1>AI Neuron DUT UVM Presentation<a class="headerlink" href="#ai-neuron-dut-uvm-presentation" title="Link to this heading"></a></h1>
+<section id="design-under-test-dut">
+<h2>Design Under Test (DUT)<a class="headerlink" href="#design-under-test-dut" title="Link to this heading"></a></h2>
+<section id="basic-artificial-neuron-model">
+<h3>Basic Artificial Neuron Model<a class="headerlink" href="#basic-artificial-neuron-model" title="Link to this heading"></a></h3>
 <p class="plantuml">
-<object data="_images/plantuml-bb97be8c1bffdddd686367f7ea95a2f6249e5539.svg" type="image/svg+xml" style="width:160px;height:160px;">
-<img src="_images/plantuml-bb97be8c1bffdddd686367f7ea95a2f6249e5539.png" alt="&#64;startuml
-Alice -&gt; Bob: Hi!
-Alice &lt;- Bob: How are you?
-&#64;enduml"/>
+<object data="_images/plantuml-afc17da7c12974f86a09120b079857cb971a447c.svg" type="image/svg+xml" style="width:793px;height:391px;">
+<img src="_images/plantuml-afc17da7c12974f86a09120b079857cb971a447c.png" alt="&#64;startuml
+skinparam packageStyle rect
+skinparam defaultTextAlignment center
+
+rectangle &quot;Inputs&quot; as inputs {
+    (X1)
+    (X2)
+    (Xn)
+}
+
+rectangle &quot;Weights&quot; as weights {
+    [W1]
+    [W2]
+    [Wn]
+}
+
+circle &quot;Σ&quot; as Summation #LightBlue
+circle &quot;f(x)&quot; as Activation #LightGreen
+
+X1 -&gt; [W1]
+X2 -&gt; [W2]
+Xn -&gt; [Wn]
+
+[W1] --&gt; Summation
+[W2] --&gt; Summation
+[Wn] --&gt; Summation
+
+node &quot;Bias (b)&quot; as Bias
+Bias ..&gt; Summation : Additive
+
+Summation -&gt; Activation : Weighted Sum (z)
+Activation -&gt; (Output Y) : Prediction
+
+note bottom of Activation
+  Activation Functions:
+  * Sigmoid
+  * ReLU
+  * Tanh
+end note
+
+&#64;enduml
+"/>
+
+</object></p>
+</section>
+</section>
+<section id="universal-verification-methodology-uvm">
+<h2>Universal Verification Methodology (UVM)<a class="headerlink" href="#universal-verification-methodology-uvm" title="Link to this heading"></a></h2>
+<p>The Universal Verification Methodology (UVM) is a standardized methodology for
+verifying integrated circuit designs. It is based on the IEEE 1800.2 standard
+and provides a modular, object-oriented framework.</p>
+<section id="key-benefits">
+<h3>Key Benefits<a class="headerlink" href="#key-benefits" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Reusability</strong>: Standardized components can be reused across different
+projects and levels of design.</p></li>
+<li><p><strong>Automation</strong>: Features like factory overrides and built-in phases automate
+testbench construction.</p></li>
+<li><p><strong>Interoperability</strong>: Supported by all major EDA vendors.</p></li>
+</ul>
+</section>
+<section id="core-components">
+<h3>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h3>
+<p>A typical UVM testbench consists of the following components:</p>
+<dl class="simple">
+<dt>UVM Driver</dt><dd><p>Converts transaction-level stimulus into pin-level activity for the
+Design Under Test (DUT).</p>
+</dd>
+<dt>UVM Monitor</dt><dd><p>Samples pin-level activity and converts it back into transactions for
+analysis.</p>
+</dd>
+<dt>UVM Sequencer</dt><dd><p>Manages the flow of transactions (sequence items) from sequences to
+the driver.</p>
+</dd>
+<dt>UVM Agent</dt><dd><p>A container that groups the sequencer, driver, and monitor for a
+specific interface.</p>
+</dd>
+<dt>UVM Scoreboard</dt><dd><p>Checks the correctness of the DUT by comparing actual output against
+expected results.</p>
+</dd>
+</dl>
+</section>
+<section id="simulation-phases">
+<h3>Simulation Phases<a class="headerlink" href="#simulation-phases" title="Link to this heading"></a></h3>
+<p>UVM components use standard execution phases to ensure consistent behavior
+across the testbench:</p>
+<ol class="arabic simple">
+<li><p><strong>build_phase</strong>: Instantiate and configure components.</p></li>
+<li><p><strong>connect_phase</strong>: Establish communication links between components.</p></li>
+<li><p><strong>run_phase</strong>: Execute the main simulation stimulus (time-consuming).</p></li>
+<li><p><strong>report_phase</strong>: Summarize and display simulation results.</p></li>
+</ol>
+</section>
+<section id="uvm-testbench-hierarchy-component-diagram">
+<h3>UVM Testbench Hierarchy (Component Diagram)<a class="headerlink" href="#uvm-testbench-hierarchy-component-diagram" title="Link to this heading"></a></h3>
+<p>This diagram illustrates the standard containment of UVM components, from the top-level test down to the driver and monitor.</p>
+<p class="plantuml">
+<object data="_images/plantuml-f3808f5b19a3dcd0d2e7db033c63abccf0490d90.svg" type="image/svg+xml" style="width:899px;height:575px;">
+<img src="_images/plantuml-f3808f5b19a3dcd0d2e7db033c63abccf0490d90.png" alt="&#64;startuml
+
+package &quot;Top Module&quot; {
+    [DUT]
+    interface &quot;Virtual Interface&quot; as VIF
+}
+
+package &quot;UVM Testbench&quot; {
+    component [uvm_test] as Test {
+        component [uvm_env] as Env {
+            component [uvm_agent] as Agent {
+                [uvm_sequencer] as Sequencer
+                [uvm_driver] as Driver
+                [uvm_monitor] as Monitor
+            }
+            [uvm_scoreboard] as Scoreboard
+        }
+    }
+}
+
+Sequencer -&gt; Driver : sequence_item
+Driver -down-&gt; VIF : Pin Wiggles
+VIF -up-&gt; Monitor : Pin Sampling
+Monitor -&gt; Scoreboard : Analysis Transactions
+&#64;enduml
+"/>
+
+</object></p>
+</section>
+<section id="uvm-transaction-flow-sequence-diagram">
+<h3>UVM Transaction Flow (Sequence Diagram)<a class="headerlink" href="#uvm-transaction-flow-sequence-diagram" title="Link to this heading"></a></h3>
+<p>This example shows the typical “handshake” between a sequence and a driver, which is fundamental for UVM testbench operation.</p>
+<p class="plantuml">
+<object data="_images/plantuml-6c83460440943cbd86a6e526d893722f0dea8400.svg" type="image/svg+xml" style="width:430px;height:287px;">
+<img src="_images/plantuml-6c83460440943cbd86a6e526d893722f0dea8400.png" alt="&#64;startuml
+participant &quot;uvm_sequence&quot; as Seq
+participant &quot;uvm_sequencer&quot; as Sqr
+participant &quot;uvm_driver&quot; as Drv
+participant &quot;DUT&quot; as DUT
+
+Seq -&gt; Sqr : start_item()
+Sqr -&gt; Drv : req
+Drv -&gt; DUT : drive_pins()
+DUT --&gt; Drv : acknowledge
+Drv -&gt; Sqr : item_done()
+Sqr -&gt; Seq : finish_item()
+&#64;enduml
+"/>
 
 </object></p>
 <div class="toctree-wrapper compound">
 </div>
+</section>
+</section>
 </section>
 
 
@@ -94,7 +256,7 @@ Alice &lt;- Bob: How are you?
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, Vladimir Armstrong.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

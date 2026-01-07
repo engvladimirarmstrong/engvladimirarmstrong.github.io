@@ -8,10 +8,11 @@ import os
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'AI Neuron UVM'
+project = 'Vlad\'s AI UVM Project'
 copyright = '2026, Vladimir Armstrong'
 author = 'Vladimir Armstrong'
 release = '1.0.0'
+html_show_copyright = False
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
