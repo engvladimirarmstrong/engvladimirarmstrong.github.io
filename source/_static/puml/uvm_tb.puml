@@ -1,0 +1,25 @@
+@startuml
+
+package "Top Module" {
+    [DUT]
+    interface "Virtual Interface" as VIF
+}
+
+package "UVM Testbench" {
+    component [uvm_test] as Test {
+        component [uvm_env] as Env {
+            component [uvm_agent] as Agent {
+                [uvm_sequencer] as Sequencer
+                [uvm_driver] as Driver
+                [uvm_monitor] as Monitor
+            }
+            [uvm_scoreboard] as Scoreboard
+        }
+    }
+}
+
+Sequencer -> Driver : sequence_item
+Driver -down-> VIF : Pin Wiggles
+VIF -up-> Monitor : Pin Sampling
+Monitor -> Scoreboard : Analysis Transactions
+@enduml

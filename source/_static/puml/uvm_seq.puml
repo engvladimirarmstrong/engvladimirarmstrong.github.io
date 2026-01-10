@@ -1,0 +1,13 @@
+@startuml
+participant "uvm_sequence" as Seq
+participant "uvm_sequencer" as Sqr
+participant "uvm_driver" as Drv
+participant "DUT" as DUT
+
+Seq -> Sqr : start_item()
+Sqr -> Drv : req
+Drv -> DUT : drive_pins()
+DUT --> Drv : acknowledge
+Drv -> Sqr : item_done()
+Sqr -> Seq : finish_item()
+@enduml

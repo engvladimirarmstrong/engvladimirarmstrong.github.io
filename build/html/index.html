@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artificial Neuron UVM Presentation &mdash; Vlad&#39;s AI UVM Project 1.0.0 documentation</title>
+  <title>Vladimir&#39;s Presentation &mdash; AI Neuron (AIN) UVM Project 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/sphinx_rtd_size.css?v=f26ae176" />
@@ -34,7 +34,7 @@
           
           
           <a href="#" class="icon icon-home">
-            Vlad's AI UVM Project
+            AI Neuron (AIN) UVM Project
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,18 +46,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Artificial Neuron UVM Presentation</a><ul>
-<li><a class="reference internal" href="#design-under-test-dut">Design Under Test (DUT)</a><ul>
-<li><a class="reference internal" href="#mathematical-model">Mathematical Model</a></li>
-<li><a class="reference internal" href="#model-diagram">Model Diagram</a></li>
+<li><a class="reference internal" href="#">Vladimir's Presentation</a><ul>
+<li><a class="reference internal" href="#ai-neuron-ain-design-under-test-dut">AI Neuron (AIN) Design Under Test (DUT)</a><ul>
+<li><a class="reference internal" href="#ain-model">AIN Model</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#verification">Verification</a><ul>
+<li><a class="reference internal" href="#directed-tests">Directed Tests</a></li>
 <li><a class="reference internal" href="#universal-verification-methodology-uvm">Universal Verification Methodology (UVM)</a><ul>
 <li><a class="reference internal" href="#key-benefits">Key Benefits</a></li>
 <li><a class="reference internal" href="#core-components">Core Components</a></li>
 <li><a class="reference internal" href="#simulation-phases">Simulation Phases</a></li>
-<li><a class="reference internal" href="#uvm-testbench-hierarchy-component-diagram">UVM Testbench Hierarchy (Component Diagram)</a></li>
-<li><a class="reference internal" href="#uvm-transaction-flow-sequence-diagram">UVM Transaction Flow (Sequence Diagram)</a></li>
+<li><a class="reference internal" href="#uvm-testbench-hierarchy">UVM Testbench Hierarchy</a></li>
+<li><a class="reference internal" href="#uvm-transaction-flow">UVM Transaction Flow</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -70,7 +73,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Vlad's AI UVM Project</a>
+          <a href="#">AI Neuron (AIN) UVM Project</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -78,7 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Artificial Neuron UVM Presentation</li>
+      <li class="breadcrumb-item active">Vladimir's Presentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,15 +91,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="artificial-neuron-uvm-presentation">
-<h1>Artificial Neuron UVM Presentation<a class="headerlink" href="#artificial-neuron-uvm-presentation" title="Link to this heading"></a></h1>
-<section id="design-under-test-dut">
-<h2>Design Under Test (DUT)<a class="headerlink" href="#design-under-test-dut" title="Link to this heading"></a></h2>
-<p>The DUT is Artificial Neuron which is the building block of Artificial Intelligence (AI) neural networks.</p>
-<section id="mathematical-model">
-<h3>Mathematical Model<a class="headerlink" href="#mathematical-model" title="Link to this heading"></a></h3>
+  <section id="vladimir-s-presentation">
+<h1>Vladimir's Presentation<a class="headerlink" href="#vladimir-s-presentation" title="Link to this heading"></a></h1>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Biological vs. Artificial Neuron</div>
+<figure class="align-default">
+<img alt="_images/biologicalvsartificialneuron.webp" src="_images/biologicalvsartificialneuron.webp" />
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition-references admonition">
+<p class="admonition-title">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sphinx-rtd-theme.readthedocs.io">Read the Docs Sphinx Theme</a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-needs.com">Sphinx-Needs</a></p></li>
+<li><p><a class="reference external" href="https://antmicro.com/blog/2025/10/support-for-upstream-uvm-2017-in-verilator">UVM Verilator</a></p></li>
+</ul>
+</div>
+<section id="ai-neuron-ain-design-under-test-dut">
+<h2>AI Neuron (AIN) Design Under Test (DUT)<a class="headerlink" href="#ai-neuron-ain-design-under-test-dut" title="Link to this heading"></a></h2>
+<p>The AI Neuron (AIN) SystemVerilog RTL module is Design Under Test (DUT).
+The AIN is the building block of Artificial Intelligence (AI) neural networks.</p>
+<section id="ain-model">
+<h3>AIN Model<a class="headerlink" href="#ain-model" title="Link to this heading"></a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+AIN Mathematical Model</div>
 <div class="math notranslate nohighlight">
 \[y = f\left( \sum_{i=1}^{n} w_i x_i + b \right)\]</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>The Artificial Neuron Mathematical Model output <span class="math notranslate nohighlight">\(y\)</span> is calculated using the following steps:</p>
 <ul class="simple">
 <li><p><strong>Step #1. Weighted Sum</strong>: Calculate the sum of inputs multiplied by weights.</p></li>
@@ -108,12 +147,16 @@
 </ul>
 </li>
 </ul>
-</section>
-<section id="model-diagram">
-<h3>Model Diagram<a class="headerlink" href="#model-diagram" title="Link to this heading"></a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+AIN Model Diagram</div>
 <p class="plantuml">
-<object data="_images/plantuml-c291e0ad87c0a14a3b1abf47f79bf0992de4138e.svg" type="image/svg+xml" style="width:793px;height:373px;">
-<img src="_images/plantuml-c291e0ad87c0a14a3b1abf47f79bf0992de4138e.png" alt="&#64;startuml
+<object data="_images/plantuml-5c8208bbf98d0af1c28e5c03dabd71f11ecea10c.svg" type="image/svg+xml" style="width:793px;height:373px;">
+<img src="_images/plantuml-5c8208bbf98d0af1c28e5c03dabd71f11ecea10c.png" alt="&#64;startuml
 skinparam packageStyle rect
 skinparam defaultTextAlignment center
 
@@ -156,15 +199,187 @@ end note
 "/>
 
 </object></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+AIN RTL Source Code</div>
+<div class="highlight-SystemVerilog notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos"> 2</span><span class="c1">// Artificial Intelligence Neuron (AIN) RTL Design SystemVerilog Module</span>
+<span class="linenos"> 3</span><span class="c1">//----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">// This module describes a Neuron (AIN) Design with 2 inputs and 4-bit fixed-point representation</span>
+<span class="linenos"> 6</span><span class="c1">// (e.g., 2 bits for the integer part, 2 bits for the fractional part).</span>
+<span class="hll"><span class="linenos"> 7</span><span class="k">module</span><span class="w"> </span><span class="n">ain_top</span><span class="w"> </span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="kt">wire</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos"> 8</span><span class="w">                </span><span class="k">input</span><span class="w"> </span><span class="kt">wire</span><span class="w"> </span><span class="n">rst</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos"> 9</span><span class="w">                </span><span class="k">input</span><span class="w"> </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">10</span><span class="w">                </span><span class="k">input</span><span class="w"> </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">11</span><span class="w">                </span><span class="k">input</span><span class="w"> </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">w1</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">12</span><span class="w">                </span><span class="k">input</span><span class="w"> </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">w2</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">13</span><span class="w">                </span><span class="k">output</span><span class="w"> </span><span class="kt">reg</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">output_val</span><span class="p">);</span><span class="w"> </span><span class="c1">// Output size is larger to accommodate summation result</span>
+</span><span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">   </span><span class="c1">// Internal wires for intermediate calculations</span>
+<span class="linenos">16</span><span class="w">   </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">prod1</span><span class="p">,</span><span class="w"> </span><span class="n">prod2</span><span class="p">;</span>
+<span class="linenos">17</span><span class="w">   </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="linenos">18</span><span class="w">   </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">activated_sum</span><span class="p">;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">   </span><span class="c1">// Multiplication (can use dedicated DSP slices on an FPGA)</span>
+<span class="linenos">21</span><span class="w">   </span><span class="k">assign</span><span class="w"> </span><span class="n">prod1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w1</span><span class="p">;</span>
+<span class="linenos">22</span><span class="w">   </span><span class="k">assign</span><span class="w"> </span><span class="n">prod2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w2</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">   </span><span class="c1">// Summation</span>
+<span class="linenos">25</span><span class="w">   </span><span class="k">assign</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prod1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prod2</span><span class="p">;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">   </span><span class="c1">// Activation Function (Simple ReLU: if sum &gt; 0, output = sum; else output = 0)</span>
+<span class="linenos">28</span><span class="w">   </span><span class="c1">// We adjust sum back to a 5-bit width for a simple ReLU output.</span>
+<span class="linenos">29</span><span class="w">   </span><span class="k">assign</span><span class="w"> </span><span class="n">activated_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="mi">4</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mb">5&#39;b00000</span><span class="p">;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">   </span><span class="c1">// Sequential logic to register the output on the clock edge</span>
+<span class="linenos">32</span><span class="w">   </span><span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">posedge</span><span class="w"> </span><span class="n">rst</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">33</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rst</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">34</span><span class="w">         </span><span class="n">output_val</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mb">5&#39;b00000</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">      </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">36</span><span class="w">         </span><span class="n">output_val</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">activated_sum</span><span class="p">;</span>
+<span class="linenos">37</span><span class="w">      </span><span class="k">end</span>
+<span class="linenos">38</span><span class="w">   </span><span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<section id="directed-tests">
+<h3>Directed Tests<a class="headerlink" href="#directed-tests" title="Link to this heading"></a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+AIN Testbench Source Code</div>
+<div class="highlight-SystemVerilog notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos"> 2</span><span class="c1">// Artificial Intelligence Neuron (AIN) Testbench (TB) SystemVerilog Module</span>
+<span class="linenos"> 3</span><span class="c1">//----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos"> 4</span><span class="k">module</span><span class="w"> </span><span class="n">ain_tb</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">   </span><span class="c1">// Inputs are reg in testbench as we need to control their values over time</span>
+<span class="linenos"> 7</span><span class="w">   </span><span class="kt">reg</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">   </span><span class="kt">reg</span><span class="w"> </span><span class="n">rst</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">   </span><span class="kt">reg</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">tb_x1</span><span class="p">,</span><span class="w"> </span><span class="n">tb_x2</span><span class="p">,</span><span class="w"> </span><span class="n">tb_w1</span><span class="p">,</span><span class="w"> </span><span class="n">tb_w2</span><span class="p">;</span>
+<span class="linenos">10</span><span class="w">   </span><span class="c1">// Output is wire in testbench to monitor the DUT&#39;s output</span>
+<span class="linenos">11</span><span class="w">   </span><span class="kt">wire</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="n">tb_output_val</span><span class="p">;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">   </span><span class="c1">// Instantiate the Design Under Test (DUT)</span>
+<span class="hll"><span class="linenos">14</span><span class="w">   </span><span class="n">ain_top</span><span class="w"> </span><span class="n">ain_top</span><span class="w"> </span><span class="p">(.</span><span class="n">clk</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">15</span><span class="w">                    </span><span class="p">.</span><span class="n">rst</span><span class="p">(</span><span class="n">rst</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">16</span><span class="w">                    </span><span class="p">.</span><span class="n">x1</span><span class="p">(</span><span class="n">tb_x1</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">17</span><span class="w">                    </span><span class="p">.</span><span class="n">x2</span><span class="p">(</span><span class="n">tb_x2</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">18</span><span class="w">                    </span><span class="p">.</span><span class="n">w1</span><span class="p">(</span><span class="n">tb_w1</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">19</span><span class="w">                    </span><span class="p">.</span><span class="n">w2</span><span class="p">(</span><span class="n">tb_w2</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">20</span><span class="w">                    </span><span class="p">.</span><span class="n">output_val</span><span class="p">(</span><span class="n">tb_output_val</span><span class="p">));</span>
+</span><span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">   </span><span class="c1">// Clock generation block</span>
+<span class="linenos">23</span><span class="w">   </span><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">24</span><span class="w">      </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">25</span><span class="w">      </span><span class="k">forever</span><span class="w"> </span><span class="p">#</span><span class="mi">5</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">clk</span><span class="p">;</span><span class="w"> </span><span class="c1">// Clock with a period of 10 time units</span>
+<span class="linenos">26</span><span class="w">   </span><span class="k">end</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">   </span><span class="c1">// Stimulus and checking block</span>
+<span class="linenos">29</span><span class="w">   </span><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">30</span><span class="w">      </span><span class="c1">// 1. Initialize inputs and apply reset</span>
+<span class="linenos">31</span><span class="w">      </span><span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">32</span><span class="w">      </span><span class="n">tb_x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d0</span><span class="p">;</span>
+<span class="linenos">33</span><span class="w">      </span><span class="n">tb_x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d0</span><span class="p">;</span>
+<span class="linenos">34</span><span class="w">      </span><span class="n">tb_w1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d0</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">      </span><span class="n">tb_w2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d0</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">#</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// Wait a bit</span>
+<span class="linenos">37</span><span class="w">      </span><span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Release reset</span>
+<span class="linenos">38</span><span class="w">      </span><span class="p">#</span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="w">      </span><span class="c1">// 2. Apply test case 1 (Positive result: sum &gt; 0)</span>
+<span class="linenos">41</span><span class="w">      </span><span class="c1">// x1=2, w1=1 (prod1=2)</span>
+<span class="linenos">42</span><span class="w">      </span><span class="c1">// x2=3, w2=2 (prod2=6)</span>
+<span class="linenos">43</span><span class="w">      </span><span class="c1">// sum=8. ReLU output=8.</span>
+<span class="linenos">44</span><span class="w">      </span><span class="n">tb_x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d2</span><span class="p">;</span>
+<span class="linenos">45</span><span class="w">      </span><span class="n">tb_w1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d1</span><span class="p">;</span>
+<span class="linenos">46</span><span class="w">      </span><span class="n">tb_x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d3</span><span class="p">;</span>
+<span class="linenos">47</span><span class="w">      </span><span class="n">tb_w2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d2</span><span class="p">;</span>
+<span class="linenos">48</span><span class="w">      </span><span class="p">#</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// Wait for the next clock edge to register the output</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span><span class="w">      </span><span class="c1">// Check the output after a full clock cycle</span>
+<span class="linenos">51</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tb_output_val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5&#39;d8</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">52</span><span class="w">         </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;Test Case 1 Passed: Output is %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tb_output_val</span><span class="p">);</span>
+<span class="linenos">53</span><span class="w">      </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">54</span><span class="w">         </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;Test Case 1 Failed: Expected 8, got %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tb_output_val</span><span class="p">);</span>
+<span class="linenos">55</span><span class="w">      </span><span class="k">end</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span><span class="w">      </span><span class="c1">// 3. Apply test case 2 (Negative result: sum &lt;= 0)</span>
+<span class="linenos">58</span><span class="w">      </span><span class="c1">// x1=1, w1=1 (prod1=1)</span>
+<span class="linenos">59</span><span class="w">      </span><span class="c1">// x2=3, w2=-1 (prod2=-3)</span>
+<span class="linenos">60</span><span class="w">      </span><span class="c1">// sum=-2. ReLU output=0.</span>
+<span class="linenos">61</span><span class="w">      </span><span class="n">tb_x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d1</span><span class="p">;</span>
+<span class="linenos">62</span><span class="w">      </span><span class="n">tb_w1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d1</span><span class="p">;</span>
+<span class="linenos">63</span><span class="w">      </span><span class="n">tb_x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4&#39;d3</span><span class="p">;</span>
+<span class="linenos">64</span><span class="w">      </span><span class="n">tb_w2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">4&#39;d1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Represents -1 in 4-bit signed</span>
+<span class="linenos">65</span><span class="w">      </span><span class="p">#</span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">      </span><span class="c1">// Check the output</span>
+<span class="linenos">68</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tb_output_val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5&#39;d0</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">69</span><span class="w">         </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;Test Case 2 Passed: Output is %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tb_output_val</span><span class="p">);</span>
+<span class="linenos">70</span><span class="w">      </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">71</span><span class="w">         </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;Test Case 2 Failed: Expected 0, got %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tb_output_val</span><span class="p">);</span>
+<span class="linenos">72</span><span class="w">      </span><span class="k">end</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span><span class="w">      </span><span class="c1">// 4. End simulation</span>
+<span class="linenos">75</span><span class="w">      </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;Simulation Finished&quot;</span><span class="p">);</span>
+<span class="linenos">76</span><span class="w">      </span><span class="p">$</span><span class="n">finish</span><span class="p">;</span>
+<span class="linenos">77</span><span class="w">   </span><span class="k">end</span>
+<span class="linenos">78</span>
+<span class="linenos">79</span><span class="w">   </span><span class="c1">// Dump waveform data for visual inspection</span>
+<span class="linenos">80</span><span class="w">   </span><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<span class="linenos">81</span><span class="w">      </span><span class="p">$</span><span class="n">dumpfile</span><span class="p">(</span><span class="s">&quot;dump.vcd&quot;</span><span class="p">);</span>
+<span class="linenos">82</span><span class="w">      </span><span class="p">$</span><span class="n">dumpvars</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">tb_top</span><span class="p">);</span>
+<span class="linenos">83</span><span class="w">   </span><span class="k">end</span>
+<span class="linenos">84</span>
+<span class="linenos">85</span><span class="k">endmodule</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+AIN Simulation Waveforms</div>
+<figure class="align-default">
+<img alt="_images/dump.png" src="_images/dump.png" />
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="universal-verification-methodology-uvm">
-<h2>Universal Verification Methodology (UVM)<a class="headerlink" href="#universal-verification-methodology-uvm" title="Link to this heading"></a></h2>
+<h3>Universal Verification Methodology (UVM)<a class="headerlink" href="#universal-verification-methodology-uvm" title="Link to this heading"></a></h3>
 <p>The Universal Verification Methodology (UVM) is a standardized methodology for
 verifying integrated circuit designs. It is based on the IEEE 1800.2 standard
 and provides a modular, object-oriented framework.</p>
 <section id="key-benefits">
-<h3>Key Benefits<a class="headerlink" href="#key-benefits" title="Link to this heading"></a></h3>
+<h4>Key Benefits<a class="headerlink" href="#key-benefits" title="Link to this heading"></a></h4>
 <ul class="simple">
 <li><p><strong>Reusability</strong>: Standardized components can be reused across different
 projects and levels of design.</p></li>
@@ -174,7 +389,7 @@ testbench construction.</p></li>
 </ul>
 </section>
 <section id="core-components">
-<h3>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h3>
+<h4>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h4>
 <p>A typical UVM testbench consists of the following components:</p>
 <dl class="simple">
 <dt>UVM Driver</dt><dd><p>Converts transaction-level stimulus into pin-level activity for the
@@ -195,9 +410,8 @@ expected results.</p>
 </dl>
 </section>
 <section id="simulation-phases">
-<h3>Simulation Phases<a class="headerlink" href="#simulation-phases" title="Link to this heading"></a></h3>
-<p>UVM components use standard execution phases to ensure consistent behavior
-across the testbench:</p>
+<h4>Simulation Phases<a class="headerlink" href="#simulation-phases" title="Link to this heading"></a></h4>
+<p>UVM components use standard execution phases to ensure consistent behavior across the testbench:</p>
 <ol class="arabic simple">
 <li><p><strong>build_phase</strong>: Instantiate and configure components.</p></li>
 <li><p><strong>connect_phase</strong>: Establish communication links between components.</p></li>
@@ -205,12 +419,19 @@ across the testbench:</p>
 <li><p><strong>report_phase</strong>: Summarize and display simulation results.</p></li>
 </ol>
 </section>
-<section id="uvm-testbench-hierarchy-component-diagram">
-<h3>UVM Testbench Hierarchy (Component Diagram)<a class="headerlink" href="#uvm-testbench-hierarchy-component-diagram" title="Link to this heading"></a></h3>
+<section id="uvm-testbench-hierarchy">
+<h4>UVM Testbench Hierarchy<a class="headerlink" href="#uvm-testbench-hierarchy" title="Link to this heading"></a></h4>
 <p>This diagram illustrates the standard containment of UVM components, from the top-level test down to the driver and monitor.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+UVM Component Diagram</div>
 <p class="plantuml">
-<object data="_images/plantuml-f3808f5b19a3dcd0d2e7db033c63abccf0490d90.svg" type="image/svg+xml" style="width:899px;height:575px;">
-<img src="_images/plantuml-f3808f5b19a3dcd0d2e7db033c63abccf0490d90.png" alt="&#64;startuml
+<object data="_images/plantuml-3cee897a9fc72ae2144718e13cab33ca708d9136.svg" type="image/svg+xml" style="width:899px;height:575px;">
+<img src="_images/plantuml-3cee897a9fc72ae2144718e13cab33ca708d9136.png" alt="&#64;startuml
 
 package &quot;Top Module&quot; {
     [DUT]
@@ -238,13 +459,25 @@ Monitor -&gt; Scoreboard : Analysis Transactions
 "/>
 
 </object></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="uvm-transaction-flow-sequence-diagram">
-<h3>UVM Transaction Flow (Sequence Diagram)<a class="headerlink" href="#uvm-transaction-flow-sequence-diagram" title="Link to this heading"></a></h3>
+<section id="uvm-transaction-flow">
+<h4>UVM Transaction Flow<a class="headerlink" href="#uvm-transaction-flow" title="Link to this heading"></a></h4>
 <p>This example shows the typical “handshake” between a sequence and a driver, which is fundamental for UVM testbench operation.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+UVM Sequence Diagram</div>
 <p class="plantuml">
-<object data="_images/plantuml-6c83460440943cbd86a6e526d893722f0dea8400.svg" type="image/svg+xml" style="width:430px;height:287px;">
-<img src="_images/plantuml-6c83460440943cbd86a6e526d893722f0dea8400.png" alt="&#64;startuml
+<object data="_images/plantuml-df5d2a7eab6ae1e1fa4bb8c29ea75ff4ef72fa5a.svg" type="image/svg+xml" style="width:430px;height:287px;">
+<img src="_images/plantuml-df5d2a7eab6ae1e1fa4bb8c29ea75ff4ef72fa5a.png" alt="&#64;startuml
 participant &quot;uvm_sequence&quot; as Seq
 participant &quot;uvm_sequencer&quot; as Sqr
 participant &quot;uvm_driver&quot; as Drv
@@ -260,8 +493,14 @@ Sqr -&gt; Seq : finish_item()
 "/>
 
 </object></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 </section>
 </section>

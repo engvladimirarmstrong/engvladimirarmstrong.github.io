@@ -1,0 +1,40 @@
+@startuml
+skinparam packageStyle rect
+skinparam defaultTextAlignment center
+
+rectangle "Inputs" as inputs {
+    (X1)
+    (X2)
+    (Xn)
+}
+
+rectangle "Weights" as weights {
+    [W1]
+    [W2]
+    [Wn]
+}
+
+circle "Σ" as Summation #LightBlue
+circle "f(x)" as Activation #LightGreen
+
+X1 -> [W1]
+X2 -> [W2]
+Xn -> [Wn]
+
+[W1] --> Summation
+[W2] --> Summation
+[Wn] --> Summation
+
+node "Bias (b)" as Bias
+Bias ..> Summation : Additive
+
+Summation -> Activation : Weighted Sum (z)
+Activation -> (Output Y) : Prediction
+
+note bottom of Activation
+  Activation Functions:
+  * Sigmoid
+  * ReLU
+end note
+
+@enduml
