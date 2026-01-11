@@ -36,3 +36,5 @@ module ain_top (input wire clk,
          output_val <= activated_sum;
       end
    end
+
+endmodule
