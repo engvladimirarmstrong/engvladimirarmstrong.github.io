@@ -79,7 +79,7 @@ module ain_tb;
    // Dump waveform data for visual inspection
    initial begin
       $dumpfile("dump.vcd");
-      $dumpvars(0, tb_top);
+      $dumpvars(0, ain_tb);
    end
 
 endmodule

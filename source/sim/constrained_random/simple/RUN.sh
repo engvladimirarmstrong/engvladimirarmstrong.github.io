@@ -1,1 +1,1 @@
-./obj_dir/Vain_tb +UVM_NO_RELNOTES +UVM_TESTNAME=my_test
+./obj_dir/Vtbench_top +UVM_TESTNAME=sig_model_test

@@ -11,7 +11,11 @@ import os
 project = 'AI Neuron (AIN) UVM Project'
 copyright = '2026, Vladimir Armstrong'
 author = 'Vladimir Armstrong'
+# The short X.Y version.
+version = '1.0'
+# The full version, including alpha/beta/rc tags.
 release = '1.0.0'
+today_fmt = '%B %d, %Y'
 html_show_copyright = False
 
 # -- General configuration ---------------------------------------------------

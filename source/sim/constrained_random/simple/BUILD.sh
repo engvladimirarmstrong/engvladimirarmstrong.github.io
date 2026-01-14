@@ -1,1 +1,11 @@
-verilator --cc --trace -Wno-fatal --binary -j $(nproc) --top-module ain_tb +incdir+$UVM_HOME+$RTL_HOME+$CR_SIMPLE_TB +define+UVM_NO_DPI +incdir+$(pwd) $UVM_HOME/uvm_pkg.sv $CR_SIMPLE_TB/ain_tb.sv
+verilator -Wno-fatal \
+          --cc \
+          --trace \
+          --binary -j $(nproc) \
+          --top-module tbench_top \
+          +incdir+$UVM_HOME \
+          +define+UVM_NO_DPI \
+          +incdir+$CR_SIMPLE_TB \
+          $UVM_HOME/uvm_pkg.sv \
+          $CR_SIMPLE_TB/sig_pkg.sv \
+          $CR_SIMPLE_TB/tb.sv
