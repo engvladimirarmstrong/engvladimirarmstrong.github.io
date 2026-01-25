@@ -1,25 +1,33 @@
 @startuml
-
-package "Top Module" {
-    [DUT]
-    interface "Virtual Interface" as VIF
-}
+skinparam componentStyle rectangle
 
 package "UVM Testbench" {
-    component [uvm_test] as Test {
-        component [uvm_env] as Env {
-            component [uvm_agent] as Agent {
-                [uvm_sequencer] as Sequencer
-                [uvm_driver] as Driver
-                [uvm_monitor] as Monitor
-            }
-            [uvm_scoreboard] as Scoreboard
+    component "DUT" as DUT #lightgrey
+
+    package "UVM Environment" {
+        
+        package "Input Agent" {
+            component "Monitor (In)" as MON_IN
+            component "Driver" as DRV
         }
+
+        package "Output Agent" {
+            component "Monitor (Out)" as MON_OUT
+        }
+
+        component "Predictor" as PRED #yellow
+        component "Scoreboard" as SCB #lightgreen
     }
 }
 
-Sequencer -> Driver : sequence_item
-Driver -down-> VIF : Pin Wiggles
-VIF -up-> Monitor : Pin Sampling
-Monitor -> Scoreboard : Analysis Transactions
+' Stimulus Flow
+DRV -down-> DUT : Drives
+MON_IN -up-> DUT : Samples
+
+' Data Comparison Flow
+MON_IN -right-> PRED : Observed Inputs
+PRED -right-> SCB : Expected Data
+MON_OUT -left-> SCB : Actual Data
+MON_OUT -up-> DUT : Samples Outputs
+
 @enduml

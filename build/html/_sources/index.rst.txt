@@ -1,5 +1,5 @@
 *************************************************************************************************************************
-Vladimir\'s Presentation
+Vladimir\'s UVM DPI-C Presentation
 *************************************************************************************************************************
 
 .. sidebar:: References
@@ -11,12 +11,14 @@ Vladimir\'s Presentation
 :Last updated: |today|
 :Version: |version|
 :Release: |release|
+:UVM: Universal Verification Methodology (constrained-random verification)
+:DPI: Direct Programming Interface (C reference model)
+:AIN: Artificial Intelligence Neuron (DUT)
 
 .. contents:: Table of Contents
 
 AI Neuron (AIN) Design Under Test (DUT)
 =========================================================================================================================
-
 The AI Neuron (AIN) SystemVerilog RTL module is Design Under Test (DUT).
 The AIN is the building block of Artificial Intelligence (AI) neural networks.
 
@@ -28,7 +30,6 @@ The AIN is the building block of Artificial Intelligence (AI) neural networks.
 
 AIN Model
 -------------------------------------------------------------------------------------------------------------------------
-
 .. grid:: 1
 
     .. grid-item-card:: AIN Mathematical Model
@@ -66,21 +67,20 @@ Verification
 
 Directed Tests
 -------------------------------------------------------------------------------------------------------------------------
-
 .. grid:: 1
 
-    .. grid-item-card:: Hello World Testbench Source Code
+    .. grid-item-card:: Directed Tests Testbench Source Code
 
        .. literalinclude:: tb/directed_tests/helloworld/ain_tb.sv
            :language: SystemVerilog
            :linenos:
            :emphasize-lines: 14-20
 
-    .. grid-item-card:: Hello World Simulation Waveforms
+    .. grid-item-card:: Directed Tests Simulation Waveforms
 
        .. figure:: sim/directed_tests/helloworld/dump.png
 
-    .. grid-item-card:: Simulation Log
+    .. grid-item-card:: Directed Tests Simulation Log
 
        .. code-block:: Text
           :linenos:
@@ -93,50 +93,29 @@ Directed Tests
           - Verilator: $finish at 45ps; walltime 0.001 s; speed 26.443 ns/s
           - Verilator: cpu 0.002 s on 1 threads; alloced 95 MB
 
-Universal Verification Methodology (UVM)
+UVM Overview
 -------------------------------------------------------------------------------------------------------------------------
-
 The Universal Verification Methodology (UVM) is a standardized methodology for
 verifying integrated circuit designs. It is based on the IEEE 1800.2 standard
 and provides a modular, object-oriented framework.
 
 Key Benefits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 * **Reusability**: Standardized components can be reused across different
   projects and levels of design.
 * **Automation**: Features like factory overrides and built-in phases automate
   testbench construction.
 * **Interoperability**: Supported by all major EDA vendors.
+* **Constrained-random verification (CRV)**: Reduced, automated test creation, enhanced bug detection in unexpected scenarios, superior scalability, and better, actionable coverage metrics to ensure high-quality, comprehensive validation.
 
-Core Components
+  - **Higher Bug Detection Rate**: Because constrained-random testing generates unexpected input combinations, it exposes deep design flaws and corner cases that manual, directed tests often miss.
+  - **Reduced Test Development Time**: Instead of writing hundreds of manual tests, engineers write a smaller set of constrained-random scenarios that can generate millions of varied, meaningful stimulus scenarios automatically.
+  - **Improved Coverage Efficiency**: UVM allows for the automation of functional coverage collection, ensuring that all defined corner cases and scenarios are hit.
+  - **Scalability for Complex Designs**: As ASIC designs grow in complexity, CRV provides a scalable solution to verify billions of transistors by defining rules (constraints) rather than explicit scenarios.
+  - **Flexibility with Constraints**: Constraints allow engineers to direct the stimulus to specific areas of interest (e.g., specific timing or data ranges) while keeping the tests random, often referred to as guided random testing.
+
+Phases Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-A typical UVM testbench consists of the following components:
-
-UVM Driver
-    Converts transaction-level stimulus into pin-level activity for the
-    Design Under Test (DUT).
-
-UVM Monitor
-    Samples pin-level activity and converts it back into transactions for
-    analysis.
-
-UVM Sequencer
-    Manages the flow of transactions (sequence items) from sequences to
-    the driver.
-
-UVM Agent
-    A container that groups the sequencer, driver, and monitor for a
-    specific interface.
-
-UVM Scoreboard
-    Checks the correctness of the DUT by comparing actual output against
-    expected results.
-
-Simulation Phases
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 UVM components use standard execution phases to ensure consistent behavior across the testbench:
 
 1. **build_phase**: Instantiate and configure components.
@@ -144,10 +123,36 @@ UVM components use standard execution phases to ensure consistent behavior acros
 3. **run_phase**: Execute the main simulation stimulus (time-consuming).
 4. **report_phase**: Summarize and display simulation results.
 
-UVM Testbench Hierarchy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. grid:: 1
 
-This diagram illustrates the standard containment of UVM components, from the top-level test down to the driver and monitor.
+    .. grid-item-card:: UVM Phases Flow
+
+       .. uml:: _static/puml/uvm_phases.puml
+
+Core Components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A typical UVM testbench consists of the following components:
+
+UVM Driver
+    Converts transaction-level stimulus into pin-level activity for the Design Under Test (DUT).
+
+UVM Monitor
+    Samples pin-level activity and converts it back into transactions for analysis.
+
+UVM Sequencer
+    Manages the flow of transactions (sequence items) from sequences to the driver.
+
+UVM Agent
+    A container that groups the sequencer, driver, and monitor for a specific interface.
+
+UVM Scoreboard
+    Checks the correctness of the DUT by comparing actual output against expected results.
+
+Predictor (Reference Model)
+    Acts as a wrapper that receives input transactions from the input monitor. It uses SystemVerilog **DPI-C imports** to pass these inputs to a golden C/C++ model, which computes the expected result.
+
+DPI-C Interface
+    Provides the bridge between SystemVerilog transactions and C-code functions. It allows the predictor to leverage high-level software models for complex mathematical or behavioral checking.
 
 .. grid:: 1
 
@@ -155,20 +160,106 @@ This diagram illustrates the standard containment of UVM components, from the to
 
        .. uml:: _static/puml/uvm_tb.puml
 
-UVM Transaction Flow
+DPI-C Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In a UVM verification environment, a **Predictor** (Reference Model) often uses **DPI-C** to call a golden C/C++ model for expected behavior calculation.
+The **Scoreboard** then compares these predicted results with the actual outputs monitored from the DUT.
 
-This example shows the typical "handshake" between a sequence and a driver, which is fundamental for UVM testbench operation.
+- **Predictor (Reference Model)**: Acts as a wrapper that receives input transactions from the input monitor. It uses SystemVerilog **DPI-C imports** to pass these inputs to a golden C/C++ model, which computes the expected result.
+- **DPI-C Interface**: Provides the bridge between SystemVerilog transactions and C-code functions. It allows the predictor to leverage high-level software models for complex mathematical or behavioral checking.
+- **Scoreboard**: Houses TLM analysis implementation ports (uvm_analysis_imp) to receive two streams of data: "expected" data from the predictor and "actual" data from the output monitor. It performs the final comparison and reports errors on mismatches.
+- **Monitors**: Passive components that capture pin-level activity from the DUT and convert it into high-level transactions sent to the predictor and scoreboard.
 
 .. grid:: 1
 
-    .. grid-item-card:: UVM Sequence Diagram
+    .. grid-item-card:: DPI-C Predictor Block Diagram
+
+       .. uml:: _static/puml/uvm_dpi.puml
+
+    .. grid-item-card:: DPI-C Predictor Sequence Diagram
 
        .. uml:: _static/puml/uvm_seq.puml
 
-UVM Hello World Example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    .. grid-item-card:: C Model Source Code
 
+       .. literalinclude:: /dpi/c_model.c
+           :language: C
+           :linenos:
+           :emphasize-lines: 4
+
+    .. grid-item-card:: Package SystemVerilog Source Code
+
+       .. literalinclude:: /dpi/dpi_pkg.sv
+           :language: Verilog
+           :linenos:
+           :emphasize-lines: 3
+
+    .. grid-item-card:: Scoreboard SystemVerilog Source Code
+
+       .. literalinclude:: /dpi/my_scoreboard.sv
+           :language: SystemVerilog
+           :linenos:
+           :emphasize-lines: 11
+
+    .. grid-item-card:: Expected Simulation Log
+
+       .. code-block:: Text
+          :linenos:
+
+          [C MODEL] Adding 5 + 10
+          [SCBD] C Model Result: 15
+
+DPI-C Usage Restrictions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The key constraints and restrictions for using the SystemVerilog Direct Programming Interface (DPI-C) as defined by the IEEE 1800-2023 standard.
+
+General Constraints
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+* **No Class Method Imports**: A DPI-C function or task cannot be imported
+  directly as a class method. It must be imported at a point where a
+  standalone function/task declaration is valid (e.g., in a module,
+  interface, or package).
+* **Task vs. Function Rules**: In SystemVerilog, functions cannot consume
+  simulation time. Consequently, an imported C function cannot call a
+  SystemVerilog task that consumes time unless the C function is itself
+  imported as a **DPI-C task**.
+* **Data Type Mappings**: While many basic types (int, byte, real) map
+  directly, 4-state values (logic/reg) require specific DPI-C types and
+  API functions from ``svdpi.h`` to be interpreted correctly.
+
+Argument Restrictions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+* **Input Qualifier**: Formal ``input`` arguments in the C code must be
+  marked with the ``const`` qualifier and cannot be modified within the
+  C function.
+* **Output Undefined**: The initial values of ``output`` arguments are
+  undetermined and implementation-dependent when they reach the C function
+  side.
+* **Array Limitations**:
+    * Packed/unpacked dynamic arrays are handled as an ``svOpenArrayHandle``
+      on the C side.
+    * For multi-dimensional or complex arrays, users are encouraged to use
+      wrapper functions for conversion.
+
+Contextual Limitations
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+* **Context Awareness**: To call a SystemVerilog task/function or to access
+  simulation scope from C, the import must be declared with the ``context``
+  keyword (e.g., ``import "DPI-C" context function...``).
+* **Thread Safety**: By default, many simulators assume DPI-C imports are
+  not thread-safe. Special tool-specific flags (e.g., ``--threads-dpi``)
+  may be required to enable parallel execution of DPI imports.
+
+Best Practices
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+* **Avoid Scope Access**: Minimize calls that require the ``context`` keyword as they incur higher performance overhead.
+* **Data Batching**: When streaming large amounts of data, use arrays to batch values rather than making frequent individual calls.
+
+.. note::
+   Highly recommended to keep argument lists as simple as possible (using only 2-state C-compatible types) to maximize performance and avoid the overhead of 4-state logic conversions.
+
+UVM Concrete Example
+-------------------------------------------------------------------------------------------------------------------------
 .. grid:: 1
 
     .. grid-item-card:: Testbench Source Code

@@ -1,0 +1,55 @@
+@startuml
+skinparam componentStyle rectangle
+
+package "UVM Testbench" {
+    [uvm_test] as Test
+    [uvm_env] as Env
+
+    package "Agents" {
+        [Input Agent] as InAgent
+        [Output Agent] as OutAgent
+        [uvm_monitor] as InMon
+        [uvm_monitor] as OutMon
+    }
+
+    [Predictor (Reference Model)] as Predictor
+    [uvm_scoreboard] as Scoreboard
+}
+
+package "C-Domain (DPI-C)" {
+    [Golden C Model] as CModel
+}
+
+database "DUT (RTL)" as DUT
+
+' Connections
+Test --> Env : build/config
+Env *-- InAgent
+Env *-- OutAgent
+Env *-- Predictor
+Env *-- Scoreboard
+
+InAgent *-- InMon
+OutAgent *-- OutMon
+
+InMon -[#blue]-> Predictor : "uvm_analysis_port\n(Trans into Predictor)"
+Predictor -[#red]right-> CModel : "DPI-C call\n(C function execution)"
+CModel -[#red]left-> Predictor : "Return expected values"
+
+Predictor -[#green]-> Scoreboard : "Expected Trans"
+OutMon -[#green]-> Scoreboard : "Actual Trans"
+
+InMon -.-> DUT : monitor inputs
+OutMon -.-> DUT : monitor outputs
+
+note right of Predictor
+  import "DPI-C" context function
+  void calculate_expected(input_trans, output_trans);
+end note
+
+note bottom of Scoreboard
+  Compares Expected vs Actual
+  mismatch = `uvm_error
+end note
+
+@enduml

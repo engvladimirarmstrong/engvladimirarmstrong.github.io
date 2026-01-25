@@ -1,13 +1,40 @@
 @startuml
-participant "uvm_sequence" as Seq
-participant "uvm_sequencer" as Sqr
-participant "uvm_driver" as Drv
+skinparam ParticipantPadding 10
+skinparam BoxPadding 10
+
+box "UVM Testbench" #LightBlue
+participant "Sequence" as SEQ
+participant "Agent1\n(Driver/Monitor)" as AG1
+participant "Agent2\n(Passive Monitor)" as AG2
+participant "Predictor\n(DPI-C)" as PRED
+participant "Scoreboard" as SB
+end box
+
 participant "DUT" as DUT
 
-Seq -> Sqr : start_item()
-Sqr -> Drv : req
-Drv -> DUT : drive_pins()
-DUT --> Drv : acknowledge
-Drv -> Sqr : item_done()
-Sqr -> Seq : finish_item()
+== Configuration & Build Phase ==
+AG1 -> AG1: Build Drivers/Monitors
+AG2 -> AG2: Build Monitor
+PRED -> PRED: Load C Model
+SB -> SB: Connect Analysis Ports
+
+== Stimulus Generation ==
+SEQ -> AG1: Start Sequence Item
+AG1 -> DUT: Drive Transaction (Input)
+activate DUT
+
+== Data Monitoring & Prediction ==
+AG1 -> SB: Monitor Actual Output (via TLM)
+AG1 -> PRED: Send Transaction for Ref
+activate PRED
+PRED -> PRED: Execute DPI-C Function
+PRED --> SB: Send Expected Output (via TLM)
+deactivate PRED
+
+== Verification ==
+DUT --> AG1: Signal Change
+SB -> SB: Compare Actual vs Expected
+SB -> SB: Report Pass/Fail
+
+deactivate DUT
 @enduml

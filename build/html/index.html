@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vladimir&#39;s Presentation &mdash; AI Neuron (AIN) UVM Project 1.0.0 documentation</title>
+  <title>Vladimir&#39;s UVM DPI-C Presentation &mdash; AI Neuron (AIN) UVM Project 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/css/sphinx_rtd_size.css?v=f26ae176" />
@@ -46,22 +46,28 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Vladimir's Presentation</a><ul>
+<li><a class="reference internal" href="#">Vladimir's UVM DPI-C Presentation</a><ul>
 <li><a class="reference internal" href="#ai-neuron-ain-design-under-test-dut">AI Neuron (AIN) Design Under Test (DUT)</a><ul>
 <li><a class="reference internal" href="#ain-model">AIN Model</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#verification">Verification</a><ul>
 <li><a class="reference internal" href="#directed-tests">Directed Tests</a></li>
-<li><a class="reference internal" href="#universal-verification-methodology-uvm">Universal Verification Methodology (UVM)</a><ul>
+<li><a class="reference internal" href="#uvm-overview">UVM Overview</a><ul>
 <li><a class="reference internal" href="#key-benefits">Key Benefits</a></li>
+<li><a class="reference internal" href="#phases-overview">Phases Overview</a></li>
 <li><a class="reference internal" href="#core-components">Core Components</a></li>
-<li><a class="reference internal" href="#simulation-phases">Simulation Phases</a></li>
-<li><a class="reference internal" href="#uvm-testbench-hierarchy">UVM Testbench Hierarchy</a></li>
-<li><a class="reference internal" href="#uvm-transaction-flow">UVM Transaction Flow</a></li>
-<li><a class="reference internal" href="#uvm-hello-world-example">UVM Hello World Example</a></li>
+<li><a class="reference internal" href="#dpi-c-overview">DPI-C Overview</a></li>
+<li><a class="reference internal" href="#dpi-c-usage-restrictions">DPI-C Usage Restrictions</a><ul>
+<li><a class="reference internal" href="#general-constraints">General Constraints</a></li>
+<li><a class="reference internal" href="#argument-restrictions">Argument Restrictions</a></li>
+<li><a class="reference internal" href="#contextual-limitations">Contextual Limitations</a></li>
+<li><a class="reference internal" href="#best-practices">Best Practices</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uvm-concrete-example">UVM Concrete Example</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Vladimir's Presentation</li>
+      <li class="breadcrumb-item active">Vladimir's UVM DPI-C Presentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,8 +98,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="vladimir-s-presentation">
-<h1><a class="toc-backref" href="#id1" role="doc-backlink">Vladimir's Presentation</a><a class="headerlink" href="#vladimir-s-presentation" title="Link to this heading"></a></h1>
+  <section id="vladimir-s-uvm-dpi-c-presentation">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Vladimir's UVM DPI-C Presentation</a><a class="headerlink" href="#vladimir-s-uvm-dpi-c-presentation" title="Link to this heading"></a></h1>
 <aside class="sidebar">
 <p class="sidebar-title">References</p>
 <ul class="simple">
@@ -104,7 +110,7 @@
 </aside>
 <dl class="field-list simple">
 <dt class="field-odd">Last updated<span class="colon">:</span></dt>
-<dd class="field-odd"><p>January 14, 2026</p>
+<dd class="field-odd"><p>January 25, 2026</p>
 </dd>
 <dt class="field-even">Version<span class="colon">:</span></dt>
 <dd class="field-even"><p>1.0</p>
@@ -112,11 +118,20 @@
 <dt class="field-odd">Release<span class="colon">:</span></dt>
 <dd class="field-odd"><p>1.0.0</p>
 </dd>
+<dt class="field-even">UVM<span class="colon">:</span></dt>
+<dd class="field-even"><p>Universal Verification Methodology (constrained-random verification)</p>
+</dd>
+<dt class="field-odd">DPI<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Direct Programming Interface (C reference model)</p>
+</dd>
+<dt class="field-even">AIN<span class="colon">:</span></dt>
+<dd class="field-even"><p>Artificial Intelligence Neuron (DUT)</p>
+</dd>
 </dl>
 <nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#vladimir-s-presentation" id="id1">Vladimir's Presentation</a></p>
+<li><p><a class="reference internal" href="#vladimir-s-uvm-dpi-c-presentation" id="id1">Vladimir's UVM DPI-C Presentation</a></p>
 <ul>
 <li><p><a class="reference internal" href="#ai-neuron-ain-design-under-test-dut" id="id2">AI Neuron (AIN) Design Under Test (DUT)</a></p>
 <ul>
@@ -126,16 +141,23 @@
 <li><p><a class="reference internal" href="#verification" id="id4">Verification</a></p>
 <ul>
 <li><p><a class="reference internal" href="#directed-tests" id="id5">Directed Tests</a></p></li>
-<li><p><a class="reference internal" href="#universal-verification-methodology-uvm" id="id6">Universal Verification Methodology (UVM)</a></p>
+<li><p><a class="reference internal" href="#uvm-overview" id="id6">UVM Overview</a></p>
 <ul>
 <li><p><a class="reference internal" href="#key-benefits" id="id7">Key Benefits</a></p></li>
-<li><p><a class="reference internal" href="#core-components" id="id8">Core Components</a></p></li>
-<li><p><a class="reference internal" href="#simulation-phases" id="id9">Simulation Phases</a></p></li>
-<li><p><a class="reference internal" href="#uvm-testbench-hierarchy" id="id10">UVM Testbench Hierarchy</a></p></li>
-<li><p><a class="reference internal" href="#uvm-transaction-flow" id="id11">UVM Transaction Flow</a></p></li>
-<li><p><a class="reference internal" href="#uvm-hello-world-example" id="id12">UVM Hello World Example</a></p></li>
+<li><p><a class="reference internal" href="#phases-overview" id="id8">Phases Overview</a></p></li>
+<li><p><a class="reference internal" href="#core-components" id="id9">Core Components</a></p></li>
+<li><p><a class="reference internal" href="#dpi-c-overview" id="id10">DPI-C Overview</a></p></li>
+<li><p><a class="reference internal" href="#dpi-c-usage-restrictions" id="id11">DPI-C Usage Restrictions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#general-constraints" id="id12">General Constraints</a></p></li>
+<li><p><a class="reference internal" href="#argument-restrictions" id="id13">Argument Restrictions</a></p></li>
+<li><p><a class="reference internal" href="#contextual-limitations" id="id14">Contextual Limitations</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id15">Best Practices</a></p></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#uvm-concrete-example" id="id16">UVM Concrete Example</a></p></li>
 </ul>
 </li>
 </ul>
@@ -311,7 +333,7 @@ AIN RTL Source Code</div>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-Hello World Testbench Source Code</div>
+Directed Tests Testbench Source Code</div>
 <div class="highlight-SystemVerilog notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//----------------------------------------------------------------------------------------------------------------------</span>
 <span class="linenos"> 2</span><span class="c1">// Artificial Intelligence Neuron (AIN) Testbench (TB) SystemVerilog Module</span>
 <span class="linenos"> 3</span><span class="c1">//----------------------------------------------------------------------------------------------------------------------</span>
@@ -406,7 +428,7 @@ Hello World Testbench Source Code</div>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-Hello World Simulation Waveforms</div>
+Directed Tests Simulation Waveforms</div>
 <figure class="align-default">
 <img alt="_images/dump.png" src="_images/dump.png" />
 </figure>
@@ -417,7 +439,7 @@ Hello World Simulation Waveforms</div>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-Simulation Log</div>
+Directed Tests Simulation Log</div>
 <div class="highlight-Text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Test Case 1 Passed: Output is   8
 <span class="linenos">2</span>Test Case 2 Passed: Output is   0
 <span class="linenos">3</span>Simulation Finished
@@ -433,8 +455,8 @@ Simulation Log</div>
 </div>
 </div>
 </section>
-<section id="universal-verification-methodology-uvm">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Universal Verification Methodology (UVM)</a><a class="headerlink" href="#universal-verification-methodology-uvm" title="Link to this heading"></a></h3>
+<section id="uvm-overview">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">UVM Overview</a><a class="headerlink" href="#uvm-overview" title="Link to this heading"></a></h3>
 <p>The Universal Verification Methodology (UVM) is a standardized methodology for
 verifying integrated circuit designs. It is based on the IEEE 1800.2 standard
 and provides a modular, object-oriented framework.</p>
@@ -446,31 +468,19 @@ projects and levels of design.</p></li>
 <li><p><strong>Automation</strong>: Features like factory overrides and built-in phases automate
 testbench construction.</p></li>
 <li><p><strong>Interoperability</strong>: Supported by all major EDA vendors.</p></li>
+<li><p><strong>Constrained-random verification (CRV)</strong>: Reduced, automated test creation, enhanced bug detection in unexpected scenarios, superior scalability, and better, actionable coverage metrics to ensure high-quality, comprehensive validation.</p>
+<ul>
+<li><p><strong>Higher Bug Detection Rate</strong>: Because constrained-random testing generates unexpected input combinations, it exposes deep design flaws and corner cases that manual, directed tests often miss.</p></li>
+<li><p><strong>Reduced Test Development Time</strong>: Instead of writing hundreds of manual tests, engineers write a smaller set of constrained-random scenarios that can generate millions of varied, meaningful stimulus scenarios automatically.</p></li>
+<li><p><strong>Improved Coverage Efficiency</strong>: UVM allows for the automation of functional coverage collection, ensuring that all defined corner cases and scenarios are hit.</p></li>
+<li><p><strong>Scalability for Complex Designs</strong>: As ASIC designs grow in complexity, CRV provides a scalable solution to verify billions of transistors by defining rules (constraints) rather than explicit scenarios.</p></li>
+<li><p><strong>Flexibility with Constraints</strong>: Constraints allow engineers to direct the stimulus to specific areas of interest (e.g., specific timing or data ranges) while keeping the tests random, often referred to as guided random testing.</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="core-components">
-<h4><a class="toc-backref" href="#id8" role="doc-backlink">Core Components</a><a class="headerlink" href="#core-components" title="Link to this heading"></a></h4>
-<p>A typical UVM testbench consists of the following components:</p>
-<dl class="simple">
-<dt>UVM Driver</dt><dd><p>Converts transaction-level stimulus into pin-level activity for the
-Design Under Test (DUT).</p>
-</dd>
-<dt>UVM Monitor</dt><dd><p>Samples pin-level activity and converts it back into transactions for
-analysis.</p>
-</dd>
-<dt>UVM Sequencer</dt><dd><p>Manages the flow of transactions (sequence items) from sequences to
-the driver.</p>
-</dd>
-<dt>UVM Agent</dt><dd><p>A container that groups the sequencer, driver, and monitor for a
-specific interface.</p>
-</dd>
-<dt>UVM Scoreboard</dt><dd><p>Checks the correctness of the DUT by comparing actual output against
-expected results.</p>
-</dd>
-</dl>
-</section>
-<section id="simulation-phases">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">Simulation Phases</a><a class="headerlink" href="#simulation-phases" title="Link to this heading"></a></h4>
+<section id="phases-overview">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Phases Overview</a><a class="headerlink" href="#phases-overview" title="Link to this heading"></a></h4>
 <p>UVM components use standard execution phases to ensure consistent behavior across the testbench:</p>
 <ol class="arabic simple">
 <li><p><strong>build_phase</strong>: Instantiate and configure components.</p></li>
@@ -478,10 +488,68 @@ expected results.</p>
 <li><p><strong>run_phase</strong>: Execute the main simulation stimulus (time-consuming).</p></li>
 <li><p><strong>report_phase</strong>: Summarize and display simulation results.</p></li>
 </ol>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+UVM Phases Flow</div>
+<p class="plantuml">
+<object data="_images/plantuml-50e5e29c69b02f12a57c8f235b36222be20d6f95.svg" type="image/svg+xml" style="width:399px;height:892px;">
+<img src="_images/plantuml-50e5e29c69b02f12a57c8f235b36222be20d6f95.png" alt="&#64;startuml
+skinparam ActivityBackgroundColor LightYellow
+skinparam ActivityBorderColor Black
+
+partition &quot;Build &amp; Connect (Functions)&quot; {
+  (*) --&gt; &quot;build_phase&quot;
+  &quot;build_phase&quot; --&gt; &quot;connect_phase&quot;
+  &quot;connect_phase&quot; --&gt; &quot;end_of_elaboration_phase&quot;
+  &quot;end_of_elaboration_phase&quot; --&gt; &quot;start_of_simulation_phase&quot;
+}
+
+partition &quot;Simulation (Tasks)&quot; {
+  &quot;start_of_simulation_phase&quot; --&gt; &quot;run_phase&quot;
+  note right: Consumes Simulation Time
+}
+
+partition &quot;Cleanup &amp; Report (Functions)&quot; {
+  &quot;run_phase&quot; --&gt; &quot;extract_phase&quot;
+  &quot;extract_phase&quot; --&gt; &quot;check_phase&quot;
+  &quot;check_phase&quot; --&gt; &quot;report_phase&quot;
+  &quot;report_phase&quot; --&gt; &quot;final_phase&quot;
+}
+
+&quot;final_phase&quot; --&gt; (*)
+&#64;enduml
+"/>
+
+</object></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="uvm-testbench-hierarchy">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">UVM Testbench Hierarchy</a><a class="headerlink" href="#uvm-testbench-hierarchy" title="Link to this heading"></a></h4>
-<p>This diagram illustrates the standard containment of UVM components, from the top-level test down to the driver and monitor.</p>
+<section id="core-components">
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">Core Components</a><a class="headerlink" href="#core-components" title="Link to this heading"></a></h4>
+<p>A typical UVM testbench consists of the following components:</p>
+<dl class="simple">
+<dt>UVM Driver</dt><dd><p>Converts transaction-level stimulus into pin-level activity for the Design Under Test (DUT).</p>
+</dd>
+<dt>UVM Monitor</dt><dd><p>Samples pin-level activity and converts it back into transactions for analysis.</p>
+</dd>
+<dt>UVM Sequencer</dt><dd><p>Manages the flow of transactions (sequence items) from sequences to the driver.</p>
+</dd>
+<dt>UVM Agent</dt><dd><p>A container that groups the sequencer, driver, and monitor for a specific interface.</p>
+</dd>
+<dt>UVM Scoreboard</dt><dd><p>Checks the correctness of the DUT by comparing actual output against expected results.</p>
+</dd>
+<dt>Predictor (Reference Model)</dt><dd><p>Acts as a wrapper that receives input transactions from the input monitor. It uses SystemVerilog <strong>DPI-C imports</strong> to pass these inputs to a golden C/C++ model, which computes the expected result.</p>
+</dd>
+<dt>DPI-C Interface</dt><dd><p>Provides the bridge between SystemVerilog transactions and C-code functions. It allows the predictor to leverage high-level software models for complex mathematical or behavioral checking.</p>
+</dd>
+</dl>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
 <div class="sd-col sd-d-flex-row docutils">
@@ -490,31 +558,39 @@ expected results.</p>
 <div class="sd-card-title sd-font-weight-bold docutils">
 UVM Component Diagram</div>
 <p class="plantuml">
-<object data="_images/plantuml-3cee897a9fc72ae2144718e13cab33ca708d9136.svg" type="image/svg+xml" style="width:899px;height:575px;">
-<img src="_images/plantuml-3cee897a9fc72ae2144718e13cab33ca708d9136.png" alt="&#64;startuml
-
-package &quot;Top Module&quot; {
-    [DUT]
-    interface &quot;Virtual Interface&quot; as VIF
-}
+<object data="_images/plantuml-8bcfd838ca2f53886688f1766d4cc72ef8d17b21.svg" type="image/svg+xml" style="width:882px;height:386px;">
+<img src="_images/plantuml-8bcfd838ca2f53886688f1766d4cc72ef8d17b21.png" alt="&#64;startuml
+skinparam componentStyle rectangle
 
 package &quot;UVM Testbench&quot; {
-    component [uvm_test] as Test {
-        component [uvm_env] as Env {
-            component [uvm_agent] as Agent {
-                [uvm_sequencer] as Sequencer
-                [uvm_driver] as Driver
-                [uvm_monitor] as Monitor
-            }
-            [uvm_scoreboard] as Scoreboard
+    component &quot;DUT&quot; as DUT #lightgrey
+
+    package &quot;UVM Environment&quot; {
+        
+        package &quot;Input Agent&quot; {
+            component &quot;Monitor (In)&quot; as MON_IN
+            component &quot;Driver&quot; as DRV
         }
+
+        package &quot;Output Agent&quot; {
+            component &quot;Monitor (Out)&quot; as MON_OUT
+        }
+
+        component &quot;Predictor&quot; as PRED #yellow
+        component &quot;Scoreboard&quot; as SCB #lightgreen
     }
 }
 
-Sequencer -&gt; Driver : sequence_item
-Driver -down-&gt; VIF : Pin Wiggles
-VIF -up-&gt; Monitor : Pin Sampling
-Monitor -&gt; Scoreboard : Analysis Transactions
+' Stimulus Flow
+DRV -down-&gt; DUT : Drives
+MON_IN -up-&gt; DUT : Samples
+
+' Data Comparison Flow
+MON_IN -right-&gt; PRED : Observed Inputs
+PRED -right-&gt; SCB : Expected Data
+MON_OUT -left-&gt; SCB : Actual Data
+MON_OUT -up-&gt; DUT : Samples Outputs
+
 &#64;enduml
 "/>
 
@@ -525,30 +601,79 @@ Monitor -&gt; Scoreboard : Analysis Transactions
 </div>
 </div>
 </section>
-<section id="uvm-transaction-flow">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">UVM Transaction Flow</a><a class="headerlink" href="#uvm-transaction-flow" title="Link to this heading"></a></h4>
-<p>This example shows the typical “handshake” between a sequence and a driver, which is fundamental for UVM testbench operation.</p>
+<section id="dpi-c-overview">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">DPI-C Overview</a><a class="headerlink" href="#dpi-c-overview" title="Link to this heading"></a></h4>
+<p>In a UVM verification environment, a <strong>Predictor</strong> (Reference Model) often uses <strong>DPI-C</strong> to call a golden C/C++ model for expected behavior calculation.
+The <strong>Scoreboard</strong> then compares these predicted results with the actual outputs monitored from the DUT.</p>
+<ul class="simple">
+<li><p><strong>Predictor (Reference Model)</strong>: Acts as a wrapper that receives input transactions from the input monitor. It uses SystemVerilog <strong>DPI-C imports</strong> to pass these inputs to a golden C/C++ model, which computes the expected result.</p></li>
+<li><p><strong>DPI-C Interface</strong>: Provides the bridge between SystemVerilog transactions and C-code functions. It allows the predictor to leverage high-level software models for complex mathematical or behavioral checking.</p></li>
+<li><p><strong>Scoreboard</strong>: Houses TLM analysis implementation ports (uvm_analysis_imp) to receive two streams of data: “expected” data from the predictor and “actual” data from the output monitor. It performs the final comparison and reports errors on mismatches.</p></li>
+<li><p><strong>Monitors</strong>: Passive components that capture pin-level activity from the DUT and convert it into high-level transactions sent to the predictor and scoreboard.</p></li>
+</ul>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-UVM Sequence Diagram</div>
+DPI-C Predictor Block Diagram</div>
 <p class="plantuml">
-<object data="_images/plantuml-df5d2a7eab6ae1e1fa4bb8c29ea75ff4ef72fa5a.svg" type="image/svg+xml" style="width:430px;height:287px;">
-<img src="_images/plantuml-df5d2a7eab6ae1e1fa4bb8c29ea75ff4ef72fa5a.png" alt="&#64;startuml
-participant &quot;uvm_sequence&quot; as Seq
-participant &quot;uvm_sequencer&quot; as Sqr
-participant &quot;uvm_driver&quot; as Drv
-participant &quot;DUT&quot; as DUT
+<object data="_images/plantuml-43aa996d4c1c7fae4380f97513279dfe753c140a.svg" type="image/svg+xml" style="width:1279px;height:897px;">
+<img src="_images/plantuml-43aa996d4c1c7fae4380f97513279dfe753c140a.png" alt="&#64;startuml
+skinparam componentStyle rectangle
 
-Seq -&gt; Sqr : start_item()
-Sqr -&gt; Drv : req
-Drv -&gt; DUT : drive_pins()
-DUT --&gt; Drv : acknowledge
-Drv -&gt; Sqr : item_done()
-Sqr -&gt; Seq : finish_item()
+package &quot;UVM Testbench&quot; {
+    [uvm_test] as Test
+    [uvm_env] as Env
+
+    package &quot;Agents&quot; {
+        [Input Agent] as InAgent
+        [Output Agent] as OutAgent
+        [uvm_monitor] as InMon
+        [uvm_monitor] as OutMon
+    }
+
+    [Predictor (Reference Model)] as Predictor
+    [uvm_scoreboard] as Scoreboard
+}
+
+package &quot;C-Domain (DPI-C)&quot; {
+    [Golden C Model] as CModel
+}
+
+database &quot;DUT (RTL)&quot; as DUT
+
+' Connections
+Test --&gt; Env : build/config
+Env *-- InAgent
+Env *-- OutAgent
+Env *-- Predictor
+Env *-- Scoreboard
+
+InAgent *-- InMon
+OutAgent *-- OutMon
+
+InMon -[#blue]-&gt; Predictor : &quot;uvm_analysis_port\n(Trans into Predictor)&quot;
+Predictor -[#red]right-&gt; CModel : &quot;DPI-C call\n(C function execution)&quot;
+CModel -[#red]left-&gt; Predictor : &quot;Return expected values&quot;
+
+Predictor -[#green]-&gt; Scoreboard : &quot;Expected Trans&quot;
+OutMon -[#green]-&gt; Scoreboard : &quot;Actual Trans&quot;
+
+InMon -.-&gt; DUT : monitor inputs
+OutMon -.-&gt; DUT : monitor outputs
+
+note right of Predictor
+  import &quot;DPI-C&quot; context function
+  void calculate_expected(input_trans, output_trans);
+end note
+
+note bottom of Scoreboard
+  Compares Expected vs Actual
+  mismatch = `uvm_error
+end note
+
 &#64;enduml
 "/>
 
@@ -556,11 +681,196 @@ Sqr -&gt; Seq : finish_item()
 </div>
 </div>
 </div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+DPI-C Predictor Sequence Diagram</div>
+<p class="plantuml">
+<object data="_images/plantuml-a582bfd4d617366fe79404df0c6e0021dbf8663f.svg" type="image/svg+xml" style="width:949px;height:848px;">
+<img src="_images/plantuml-a582bfd4d617366fe79404df0c6e0021dbf8663f.png" alt="&#64;startuml
+skinparam ParticipantPadding 10
+skinparam BoxPadding 10
+
+box &quot;UVM Testbench&quot; #LightBlue
+participant &quot;Sequence&quot; as SEQ
+participant &quot;Agent1\n(Driver/Monitor)&quot; as AG1
+participant &quot;Agent2\n(Passive Monitor)&quot; as AG2
+participant &quot;Predictor\n(DPI-C)&quot; as PRED
+participant &quot;Scoreboard&quot; as SB
+end box
+
+participant &quot;DUT&quot; as DUT
+
+== Configuration &amp; Build Phase ==
+AG1 -&gt; AG1: Build Drivers/Monitors
+AG2 -&gt; AG2: Build Monitor
+PRED -&gt; PRED: Load C Model
+SB -&gt; SB: Connect Analysis Ports
+
+== Stimulus Generation ==
+SEQ -&gt; AG1: Start Sequence Item
+AG1 -&gt; DUT: Drive Transaction (Input)
+activate DUT
+
+== Data Monitoring &amp; Prediction ==
+AG1 -&gt; SB: Monitor Actual Output (via TLM)
+AG1 -&gt; PRED: Send Transaction for Ref
+activate PRED
+PRED -&gt; PRED: Execute DPI-C Function
+PRED --&gt; SB: Send Expected Output (via TLM)
+deactivate PRED
+
+== Verification ==
+DUT --&gt; AG1: Signal Change
+SB -&gt; SB: Compare Actual vs Expected
+SB -&gt; SB: Report Pass/Fail
+
+deactivate DUT
+&#64;enduml
+"/>
+
+</object></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+C Model Source Code</div>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="linenos">2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;svdpi.h&gt;</span><span class="c1"> // Required for DPI types/headers</span>
+<span class="linenos">3</span>
+<span class="hll"><span class="linenos">4</span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c_adder</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos">5</span><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[C MODEL] Adding %0d + %0d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="linenos">6</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="linenos">7</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Package SystemVerilog Source Code</div>
+<div class="highlight-Verilog notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">package</span> <span class="n">dpi_pkg</span><span class="p">;</span>
+<span class="linenos">2</span><span class="w">   </span><span class="c1">// Import the C function into SystemVerilog</span>
+<span class="hll"><span class="linenos">3</span><span class="w">   </span><span class="n">import</span><span class="w"> </span><span class="s">&quot;DPI-C&quot;</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c_adder</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span><span class="linenos">4</span><span class="k">endpackage</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Scoreboard SystemVerilog Source Code</div>
+<div class="highlight-SystemVerilog notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">class</span><span class="w"> </span><span class="nc">my_scoreboard</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="nc">uvm_scoreboard</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="w">   </span><span class="no">`uvm_component_utils</span><span class="p">(</span><span class="n">my_scoreboard</span><span class="p">)</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="n">dpi_pkg</span><span class="o">::*</span><span class="p">;</span><span class="w"> </span><span class="c1">// Import the package containing the C call</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">   </span><span class="k">function</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">check_phase</span><span class="p">(</span><span class="n">uvm_phase</span><span class="w"> </span><span class="n">phase</span><span class="p">);</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">expected_val</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">      </span><span class="c1">// Call the C model directly</span>
+<span class="hll"><span class="linenos">11</span><span class="w">      </span><span class="n">expected_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c_adder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span><span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">      </span><span class="no">`uvm_info</span><span class="p">(</span><span class="s">&quot;SCBD&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">$</span><span class="n">sformatf</span><span class="p">(</span><span class="s">&quot;C Model Result: %0d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">expected_val</span><span class="p">),</span><span class="w"> </span><span class="n">UVM_LOW</span><span class="p">)</span>
+<span class="linenos">14</span><span class="w">   </span><span class="k">endfunction</span>
+<span class="linenos">15</span><span class="kd">endclass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Expected Simulation Log</div>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>[C MODEL] Adding 5 + 10
+<span class="linenos">2</span>[SCBD] C Model Result: 15
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="uvm-hello-world-example">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">UVM Hello World Example</a><a class="headerlink" href="#uvm-hello-world-example" title="Link to this heading"></a></h4>
+<section id="dpi-c-usage-restrictions">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">DPI-C Usage Restrictions</a><a class="headerlink" href="#dpi-c-usage-restrictions" title="Link to this heading"></a></h4>
+<p>The key constraints and restrictions for using the SystemVerilog Direct Programming Interface (DPI-C) as defined by the IEEE 1800-2023 standard.</p>
+<section id="general-constraints">
+<h5><a class="toc-backref" href="#id12" role="doc-backlink">General Constraints</a><a class="headerlink" href="#general-constraints" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>No Class Method Imports</strong>: A DPI-C function or task cannot be imported
+directly as a class method. It must be imported at a point where a
+standalone function/task declaration is valid (e.g., in a module,
+interface, or package).</p></li>
+<li><p><strong>Task vs. Function Rules</strong>: In SystemVerilog, functions cannot consume
+simulation time. Consequently, an imported C function cannot call a
+SystemVerilog task that consumes time unless the C function is itself
+imported as a <strong>DPI-C task</strong>.</p></li>
+<li><p><strong>Data Type Mappings</strong>: While many basic types (int, byte, real) map
+directly, 4-state values (logic/reg) require specific DPI-C types and
+API functions from <code class="docutils literal notranslate"><span class="pre">svdpi.h</span></code> to be interpreted correctly.</p></li>
+</ul>
+</section>
+<section id="argument-restrictions">
+<h5><a class="toc-backref" href="#id13" role="doc-backlink">Argument Restrictions</a><a class="headerlink" href="#argument-restrictions" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Input Qualifier</strong>: Formal <code class="docutils literal notranslate"><span class="pre">input</span></code> arguments in the C code must be
+marked with the <code class="docutils literal notranslate"><span class="pre">const</span></code> qualifier and cannot be modified within the
+C function.</p></li>
+<li><p><strong>Output Undefined</strong>: The initial values of <code class="docutils literal notranslate"><span class="pre">output</span></code> arguments are
+undetermined and implementation-dependent when they reach the C function
+side.</p></li>
+<li><dl class="simple">
+<dt><strong>Array Limitations</strong>:</dt><dd><ul>
+<li><p>Packed/unpacked dynamic arrays are handled as an <code class="docutils literal notranslate"><span class="pre">svOpenArrayHandle</span></code>
+on the C side.</p></li>
+<li><p>For multi-dimensional or complex arrays, users are encouraged to use
+wrapper functions for conversion.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="contextual-limitations">
+<h5><a class="toc-backref" href="#id14" role="doc-backlink">Contextual Limitations</a><a class="headerlink" href="#contextual-limitations" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Context Awareness</strong>: To call a SystemVerilog task/function or to access
+simulation scope from C, the import must be declared with the <code class="docutils literal notranslate"><span class="pre">context</span></code>
+keyword (e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&quot;DPI-C&quot;</span> <span class="pre">context</span> <span class="pre">function...</span></code>).</p></li>
+<li><p><strong>Thread Safety</strong>: By default, many simulators assume DPI-C imports are
+not thread-safe. Special tool-specific flags (e.g., <code class="docutils literal notranslate"><span class="pre">--threads-dpi</span></code>)
+may be required to enable parallel execution of DPI imports.</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h5><a class="toc-backref" href="#id15" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Avoid Scope Access</strong>: Minimize calls that require the <code class="docutils literal notranslate"><span class="pre">context</span></code> keyword as they incur higher performance overhead.</p></li>
+<li><p><strong>Data Batching</strong>: When streaming large amounts of data, use arrays to batch values rather than making frequent individual calls.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Highly recommended to keep argument lists as simple as possible (using only 2-state C-compatible types) to maximize performance and avoid the overhead of 4-state logic conversions.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="uvm-concrete-example">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">UVM Concrete Example</a><a class="headerlink" href="#uvm-concrete-example" title="Link to this heading"></a></h3>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 docutils">
 <div class="sd-col sd-d-flex-row docutils">
@@ -886,7 +1196,6 @@ Simulation Log</div>
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 </section>
